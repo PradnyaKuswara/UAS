@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -20,12 +21,16 @@ class LoginController extends Controller
         ]);
  
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect()->intended('/');
+            // $request->session()->regenerate();
+            // return redirect()->intended('/');
+            return response([
+                'message' => 'Berhasil Login',
+                'user' => Auth::User(),
+            ]); //return user data and token in json format
+
         }
- 
-        return back()->with('loginError', 'Email or Password Invalid');
+        // return back()->with('loginError', 'Email or Password Invalid');
+        return response(['message' => 'We couldnt find and account that matches what you entered'], 401); //return validation if failed log in
     
     }
 
@@ -33,7 +38,6 @@ class LoginController extends Controller
         Auth::logout();
  
         $request->session()->invalidate();
-    
         $request->session()->regenerateToken();
     
         return redirect('/');

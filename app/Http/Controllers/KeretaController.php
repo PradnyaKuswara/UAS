@@ -10,7 +10,7 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\KeretaResource;
 
-class PesawatController extends Controller
+class KeretaController extends Controller
 {
     public function index(){
         $kereta = Kereta::all();

@@ -10,7 +10,7 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\BusResource;
 
-class PesawatController extends Controller
+class BusController extends Controller
 {
     public function index(){
         $bus = Bus::all();
