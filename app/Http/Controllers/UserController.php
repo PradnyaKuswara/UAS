@@ -43,8 +43,8 @@ class UserController extends Controller
         }
         
         if( $request->hasFile('image')) {
-            $path = $request->file('image')->store('user-images');
-            $regis['image'] =$path;
+            $path = $request->file('image')->store('public/user-images');
+            $regis['image'] =$request->file('image')->store('user-images');
         }
         $regis['password'] = bcrypt($request->password);
         
